@@ -2,17 +2,20 @@ import {allTasksList} from "./allTasksList";
 import {pendingTasksList} from "./pendingTasksList";
 import {doneTasksList} from "./doneTasksList";
 
-export const columnList = [
+export const initialColumns = [
     {
-        columnName: "All Tasks",
-        columnArray: allTasksList,
+        name: "Initial Tasks",
+        items: allTasksList,
+        id: 1
     },
     {
-        columnName: "Pending Tasks",
-        columnArray: pendingTasksList,
+        name: "Pending Tasks",
+        items: pendingTasksList,
+        id: 2,
     },
     {
-        columnName: "Done Tasks",
-        columnArray: doneTasksList,
+        name: "Done Tasks",
+        items: doneTasksList,
+        id: 3,
     },
 ]

@@ -1,49 +1,45 @@
 import {createContext, useState} from "react";
-import {allTasksList} from "../components/data/allTasksList";
+import {initialColumns} from "../components/data/columnList";
+import { v4 as uuidv4 } from 'uuid';
 
 const TodoAppContext = createContext()
 
 export const TodoProvider = ({children}) => {
-    const [allTasks, setAllTasks] = useState(allTasksList)
-    const [textAllLabel, setTextAllLabel] = useState("")
-    const [textAllDesc, setTextAllDesc] = useState("")
+    const [columns, setColumns] = useState(initialColumns)
 
-    const addTask = () => {
+    const addTask = (columnId, label, description) => {
         const currentDate = new Date().toLocaleString()
 
         const newTask = {
-            label: textAllLabel,
-            description: textAllDesc,
+            id: uuidv4(),
+            label,
+            description,
             createDate: currentDate
         }
 
-        setAllTasks([...allTasks, newTask])
-        setTextAllLabel("")
-        setTextAllDesc("")
+        setColumns((prev) => {
+            const columnIndex = prev.findIndex(item => item.id === columnId)
+            const newColumns = [...prev]
+            newColumns[columnIndex].items = [...newColumns[columnIndex].items, newTask]
+            return newColumns
+        })
     }
 
-    const deleteCard = (id) => {
+    const deleteTask = (columnId, taskId) => {
         if (window.confirm('Are you sure you want to delete?')) {
-            setAllTasks(allTasks.filter((item) => item.id !== id))
+            setColumns((prev) => {
+                const columnIndex = prev.findIndex(item => item.id === columnId)
+                const newColumns = [...prev]
+                newColumns[columnIndex].items = newColumns[columnIndex].items.filter((task) => taskId !== task.id)
+                return newColumns
+            })
         }
     }
 
-    const changeLabel = (e) => {
-        setTextAllLabel(e.target.value)
-    }
-
-    const changeDesc = (e) => {
-        setTextAllDesc(e.target.value)
-    }
-
     return <TodoAppContext.Provider value={{
-        allTasks,
-        textAllLabel,
-        textAllDesc,
+        columns,
         addTask,
-        changeDesc,
-        changeLabel,
-        deleteCard,
+        deleteTask,
     }}>
         {children}
     </TodoAppContext.Provider>

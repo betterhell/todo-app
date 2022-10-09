@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Column from "../components/Column";
-import {columnList} from "../components/data/columnList";
+import todoAppContext from "../context/TodoAppContext";
 
 const MainPage = () => {
+    const {columns} = useContext(todoAppContext)
+
     return (
-        <div className="flex">
-            {columnList.map((column,id) => <Column key={id} label={column.columnName} array={column.columnArray} /> )}
+        <div className="flex justify-center">
+            {columns.map(column =>
+                <Column
+                    id={column.id}
+                    key={column.id}
+                    label={column.name}
+                    tasks={column.items}
+                />
+            )}
         </div>
     );
 };
