@@ -1,6 +1,6 @@
 import {createContext, useState} from "react";
 import {initialColumns} from "../components/data/columnList";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 const TodoAppContext = createContext()
 
@@ -16,6 +16,7 @@ export const TodoProvider = ({children}) => {
             description,
             createDate: currentDate
         }
+
 
         setColumns((prev) => {
             const columnIndex = prev.findIndex(item => item.id === columnId)
@@ -36,10 +37,19 @@ export const TodoProvider = ({children}) => {
         }
     }
 
+    const transferTask = (columnFrom, columnTo,) => {
+            setColumns((prev) => {
+                const newColumns = [...prev]
+                newColumns[columnTo].items = [...newColumns[columnFrom].items]
+                return newColumns
+            })
+    }
+
     return <TodoAppContext.Provider value={{
         columns,
         addTask,
         deleteTask,
+        transferTask,
     }}>
         {children}
     </TodoAppContext.Provider>

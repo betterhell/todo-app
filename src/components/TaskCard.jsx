@@ -22,6 +22,7 @@ const TaskCard = ({columnId}) => {
         setTextDesc("")
     }
 
+
     const isDisabled = !textLabel.trim() && !textDesc.trim()
 
 
@@ -42,7 +43,7 @@ const TaskCard = ({columnId}) => {
                      <button
                          disabled={isDisabled}
                          onClick={() => createTask()}
-                         className={`btn ${isDisabled && "btn-disabled" } gap-2 hover:btn-error  hover:text-white`}>Add task <AiOutlinePlus  size="20" /></button>
+                         className={`btn ${isDisabled && "btn-disabled"} gap-2 hover:btn-error  hover:text-white`}>Add task<AiOutlinePlus size="20" /></button>
                 </div>
             </div>
              </>
