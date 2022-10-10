@@ -13,7 +13,7 @@ const Card = ({columnId, id, label, desc, date}) => {
                 {columnId === 1 &&
                     <div className="card-actions btn-block">
                         <button onClick={() => transferTask(0, 1)} className="btn btn-sm text-white text- btn-block btn-warning">Pending</button>
-                        <button onClick={() => transferTask(1, 2)} className="btn btn-sm text-white btn-block btn-success">Done</button>
+                        <button onClick={() => transferTask(0, 2)} className="btn btn-sm text-white btn-block btn-success">Done</button>
                         <button onClick={() => deleteTask(columnId, id)} className="btn btn-sm text-white btn-block btn-error">Delete</button>
                     </div>
                 }

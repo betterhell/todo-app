@@ -3,9 +3,6 @@ import TaskCard from "./TaskCard";
 import Card from "./Card";
 
 const Column = ({label, tasks, id}) => {
-
-    console.log(tasks[1])
-
     return (
          <div className={`container ${tasks.length >= 3 ? `overflow-y-scroll` : `overflow-y-hidden`} p-5 rounded shadow-2xl w-[300px] h-screen mx-5 my-5`}>
             <div className="card-title pb-2 border-b-2 justify-center">
