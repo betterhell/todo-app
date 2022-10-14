@@ -3,8 +3,10 @@ import TaskCard from "./TaskCard";
 import Card from "./Card";
 
 const Column = ({label, tasks, id}) => {
+    const userScreenHeight = window.innerHeight
+
     return (
-         <div className={`container ${tasks.length >= 3 ? `overflow-y-scroll` : `overflow-y-hidden`} p-5 rounded shadow-2xl w-[300px] h-screen mx-5 my-5`}>
+         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} p-5 rounded shadow-2xl w-[300px] h-screen mx-5 my-5`}>
             <div className="card-title pb-2 border-b-2 justify-center">
                 <h3 className="font-mono">{label}</h3>
             </div>
