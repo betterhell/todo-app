@@ -7,49 +7,53 @@ const TodoAppContext = createContext()
 export const TodoProvider = ({children}) => {
     const [columns, setColumns] = useState(initialColumns)
 
-    const addTask = (columnId, label, description) => {
+    const handleAddTask = (columnId,label, description) => {
         const currentDate = new Date().toLocaleString()
 
-        const newTask = {
+        const task = {
             id: uuidv4(),
             label,
             description,
             createDate: currentDate
         }
+        addTask(columnId, task)
+    }
 
-
+    const addTask = (columnId, task) => {
         setColumns((prev) => {
             const columnIndex = prev.findIndex(item => item.id === columnId)
             const newColumns = [...prev]
-            newColumns[columnIndex].items = [...newColumns[columnIndex].items, newTask]
+            newColumns[columnIndex].items = [...newColumns[columnIndex].items, task]
             return newColumns
         })
     }
 
-    const deleteTask = (columnId, taskId) => {
+    const handleDeleteTask = (columnId, taskId) => {
         if (window.confirm('Are you sure you want to delete?')) {
-            setColumns((prev) => {
-                const columnIndex = prev.findIndex(item => item.id === columnId)
-                const newColumns = [...prev]
-                newColumns[columnIndex].items = newColumns[columnIndex].items.filter((task) => taskId !== task.id)
-                return newColumns
-            })
+            deleteTask(columnId, taskId)
         }
     }
 
-
-    const transferTask = (columnFrom, columnTo,) => {
-            setColumns((prev) => {
-                const newColumns = [...prev]
-                newColumns[columnTo].items = [...newColumns[columnFrom].items]
-                return newColumns
-            })
+    const deleteTask = (columnId, taskId) => {
+        setColumns((prev) => {
+            const columnIndex = prev.findIndex(item => item.id === columnId)
+            const newColumns = [...prev]
+            newColumns[columnIndex].items = newColumns[columnIndex].items.filter((task) => taskId !== task.id)
+            return newColumns
+        })
     }
+
+    const transferTask = (columnIndexFrom, columnIndexTo, taskId) => {
+        const task = {...columns[columnIndexFrom].items.find(task => taskId === task.id)}
+        addTask(columns[columnIndexTo].id, task)
+        deleteTask(columns[columnIndexFrom].id, taskId)
+    }
+
 
     return <TodoAppContext.Provider value={{
         columns,
-        addTask,
-        deleteTask,
+        handleAddTask,
+        handleDeleteTask,
         transferTask,
     }}>
         {children}

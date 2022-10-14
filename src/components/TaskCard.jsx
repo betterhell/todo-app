@@ -4,7 +4,7 @@ import {BsCheckLg} from "react-icons/bs"
 import todoAppContext from "../context/TodoAppContext";
 
 const TaskCard = ({columnId}) => {
-    const {addTask} = useContext(todoAppContext)
+    const {handleAddTask} = useContext(todoAppContext)
 
     const [isOpen, setIsOpen] = useState(false);
     const [textLabel, setTextLabel] = useState("")
@@ -19,7 +19,7 @@ const TaskCard = ({columnId}) => {
     }
 
     const createTask = () => {
-        addTask(columnId,textLabel,textDesc)
+        handleAddTask(columnId,textLabel,textDesc)
         setTextLabel("")
         setTextDesc("")
         setIsOpen(false)
@@ -30,7 +30,6 @@ const TaskCard = ({columnId}) => {
             setIsOpen(true)
         }
     }
-
 
     const isDisabled = !textLabel.trim() && !textDesc.trim()
 
@@ -51,7 +50,7 @@ const TaskCard = ({columnId}) => {
                     <div className="card-actions justify-center m-3">
                         <button
                             disabled={isDisabled}
-                            onClick={() => createTask()}
+                            onClick={createTask}
                             className={`btn ${isDisabled && "btn-disabled"} btn-accent text-white gap-2 hover:btn-success  hover:text-white`}>Confirm Task<BsCheckLg size="15" />
                         </button>
                     </div>

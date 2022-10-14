@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import todoAppContext from "../context/TodoAppContext";
 
 const Card = ({columnId, id, label, desc, date}) => {
-    const {deleteTask, transferTask} = useContext(todoAppContext)
+    const {handleDeleteTask, transferTask} = useContext(todoAppContext)
 
     return (
         <div className="card m-[20px] max-w-[300px] bg-base-100 shadow-xl">
@@ -12,21 +12,21 @@ const Card = ({columnId, id, label, desc, date}) => {
                 <hr />
                 {columnId === 1 &&
                     <div className="card-actions btn-block">
-                        <button onClick={() => transferTask(0, 1)} className="btn btn-sm text-white text- btn-block btn-warning">Pending</button>
-                        <button onClick={() => transferTask(0, 2)} className="btn btn-sm text-white btn-block btn-success">Done</button>
-                        <button onClick={() => deleteTask(columnId, id)} className="btn btn-sm text-white btn-block btn-error">Delete</button>
+                        <button onClick={() => transferTask(0, 1, id)} className="btn btn-sm text-white text- btn-block btn-warning">Pending</button>
+                        <button onClick={() => transferTask(0, 2, id)} className="btn btn-sm text-white btn-block btn-success">Done</button>
+                        <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm text-white btn-block btn-error">Delete</button>
                     </div>
                 }
                 {columnId === 2 &&
                     <div className="card-actions btn-block">
-                        <button onClick={() => transferTask(1, 2)} className="btn btn-sm text-white btn-block btn-success">Done</button>
-                        <button onClick={() => deleteTask(columnId, id)} className="btn btn-sm text-white btn-block btn-error">Delete</button>
+                        <button onClick={() => transferTask(1, 2, id)} className="btn btn-sm text-white btn-block btn-success">Done</button>
+                        <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm text-white btn-block btn-error">Delete</button>
                     </div>
                 }
                 {columnId === 3 &&
                     <div className="card-actions btn-block">
-                        <button onClick={() => transferTask(2, 1)} className="btn btn-sm text-white text- btn-block btn-warning">Pending</button>
-                        <button onClick={() => deleteTask(columnId, id)} className="btn btn-sm text-white btn-block btn-error">Delete</button>
+                        <button onClick={() => transferTask(2, 1, id)} className="btn btn-sm text-white text- btn-block btn-warning">Pending</button>
+                        <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm text-white btn-block btn-error">Delete</button>
                     </div>
                 }
                 <div className="card-body font-light text-sm text-center p-0">
