@@ -17,7 +17,7 @@ const Column = ({label, tasks, id}) => {
                  </div>}
              <div className="divider"></div>
 
-            {(!tasks || tasks.length === 0) && (<p className="flex justify-center m-5">No tasks yet...</p>)}
+            {(!tasks || tasks.length === 0) && (<p className="flex justify-center font-light m-5">No tasks yet...</p>)}
             <div className="container">
                 {tasks.map(task =>
                     <Card
