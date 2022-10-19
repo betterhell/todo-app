@@ -46,11 +46,10 @@ const TaskCard = ({columnId}) => {
                             <input onChange={changeLabel} value={textLabel} type="text" placeholder="Task Label" className="input input-bordered input-accent w-full max-w-xs" />
                         </div>
 
-                        <div className="card-body p-0 w-full">
+                        <div className="card-body p-0 w-full relative">
                             <textarea onChange={changeDesc} value={textDesc} className="resize-none textarea textarea-error" placeholder="Task Desc..."></textarea>
                         </div>
                     </div>
-
                     <div className="card-actions justify-center m-3">
                         <button
                             disabled={isDisabled}

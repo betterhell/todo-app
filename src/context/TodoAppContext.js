@@ -45,8 +45,8 @@ export const TodoProvider = ({children}) => {
     const handleDeleteTask = (columnId, taskId) => {
         if (window.confirm('Are you sure you want to delete?')) {
             deleteTask(columnId, taskId)
+            toast.warning("Task deleted!")
         }
-        toast.warning("Task deleted!")
     }
 
     const deleteTask = (columnId, taskId) => {

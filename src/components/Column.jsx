@@ -15,7 +15,6 @@ const Column = ({label, tasks, id}) => {
                  <div className="flex end absolute top-3 right-10">
                     <span className="badge badge-lg badge-info text-white right-100 p-[7px]">{tasks.length}</span>
                  </div>}
-
              <div className="divider"></div>
 
             {(!tasks || tasks.length === 0) && (<p className="flex justify-center m-5">No tasks yet...</p>)}

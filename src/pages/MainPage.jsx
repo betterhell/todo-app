@@ -5,8 +5,6 @@ import todoAppContext from "../context/TodoAppContext";
 const MainPage = () => {
     const {columns} = useContext(todoAppContext)
 
-
-
     return (
         <div className="flex justify-center xs:flex-col">
             {columns.map(column =>
