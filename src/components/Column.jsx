@@ -8,7 +8,7 @@ const Column = ({label, tasks, id}) => {
     return (
          <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} relative p-5 rounded shadow-2xl w-[300px] h-screen mx-5 my-5`}>
             <div className="card-title pb-2 justify-center">
-                <h3 className="font-mono ">{label}</h3>
+                <h3 className="font-mono">{label}</h3>
             </div>
 
              {tasks.length > 0 &&
