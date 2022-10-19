@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import {AiOutlinePlus} from "react-icons/ai";
 import {BsCheckLg} from "react-icons/bs"
 import todoAppContext from "../context/TodoAppContext";
+import {toast} from "react-toastify";
 
 const TaskCard = ({columnId}) => {
     const {handleAddTask} = useContext(todoAppContext)
@@ -10,19 +11,22 @@ const TaskCard = ({columnId}) => {
     const [textLabel, setTextLabel] = useState("")
     const [textDesc, setTextDesc] = useState("")
 
+
     const changeLabel = (e) => {
         setTextLabel(e.target.value)
     }
+
 
     const changeDesc = (e) => {
         setTextDesc(e.target.value)
     }
 
     const createTask = () => {
-        handleAddTask(columnId,textLabel,textDesc)
+        handleAddTask(columnId, textLabel, textDesc)
         setTextLabel("")
         setTextDesc("")
         setIsOpen(false)
+        toast.success("Task added!")
     }
 
     const toggleTaskCard = () => {
@@ -64,7 +68,6 @@ const TaskCard = ({columnId}) => {
                     </button>
                 </div>
             }
-
         </>
     );
 };

@@ -6,7 +6,8 @@ const About = () => {
             <h1 className="text-3xl font-bold mb-10">This is a simple ToDo React Application.</h1>
             <p className="text-xl font-semibold">Creating: by
                 <a className="underline hover:text-red-500"
-                   href="https://github.com/betterhell">
+                   href="https://github.com/betterhell"
+                >
                     Me
                 </a>
             </p>

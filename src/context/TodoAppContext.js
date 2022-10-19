@@ -1,6 +1,7 @@
-import {createContext, useState} from "react";
+import {createContext, useState, useEffect} from "react";
 import {initialColumns} from "../components/data/columnList";
 import {v4 as uuidv4} from 'uuid';
+import {toast} from "react-toastify";
 
 const TodoAppContext = createContext()
 
@@ -19,6 +20,19 @@ export const TodoProvider = ({children}) => {
         addTask(columnId, task)
     }
 
+    // Save items in LS
+    useEffect(() => {
+        const todos = JSON.parse(localStorage.getItem('columns'));
+
+        if (todos) {
+            setColumns(todos);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('columns', JSON.stringify(columns));
+    }, [columns]);
+
     const addTask = (columnId, task) => {
         setColumns((prev) => {
             const columnIndex = prev.findIndex(item => item.id === columnId)
@@ -32,6 +46,7 @@ export const TodoProvider = ({children}) => {
         if (window.confirm('Are you sure you want to delete?')) {
             deleteTask(columnId, taskId)
         }
+        toast.warning("Task deleted!")
     }
 
     const deleteTask = (columnId, taskId) => {
@@ -47,6 +62,7 @@ export const TodoProvider = ({children}) => {
         const task = {...columns[columnIndexFrom].items.find(task => taskId === task.id)}
         addTask(columns[columnIndexTo].id, task)
         deleteTask(columns[columnIndexFrom].id, taskId)
+        toast.info("Task transferred!")
     }
 
 

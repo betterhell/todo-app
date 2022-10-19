@@ -6,10 +6,18 @@ const Column = ({label, tasks, id}) => {
     const userScreenHeight = window.innerHeight
 
     return (
-         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} p-5 rounded shadow-2xl w-[300px] h-screen mx-5 my-5`}>
-            <div className="card-title pb-2 border-b-2 justify-center">
-                <h3 className="font-mono">{label}</h3>
+         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} relative p-5 rounded shadow-2xl w-[300px] h-screen mx-5 my-5`}>
+            <div className="card-title pb-2 justify-center">
+                <h3 className="font-mono ">{label}</h3>
             </div>
+
+             {tasks.length > 0 &&
+                 <div className="flex end absolute top-3 right-10">
+                    <span className="badge badge-lg badge-info text-white right-100 p-[7px]">{tasks.length}</span>
+                 </div>}
+
+             <div className="divider"></div>
+
             {(!tasks || tasks.length === 0) && (<p className="flex justify-center m-5">No tasks yet...</p>)}
             <div className="container">
                 {tasks.map(task =>
