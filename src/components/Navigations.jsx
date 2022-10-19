@@ -7,7 +7,7 @@ const Navigations = ({title}) => {
     return (
         <nav className="navbar mb-[12px] justify-between shadow-lg bg-gray-700">
             <div className="container w-fit">
-                <Link className="border-2 p-2 rounded-btn text-lg font-bold align-middle text-white hover:text-accent" to="/">{title}</Link>
+                <Link className="p-2 text-lg font-bold align-middle text-white hover: " to="/">{title}</Link>
             </div>
             <div className="container w-fit">
                 <Link className="btn btn-ghost text-white gap-2 hover:btn-accent hover:text-white mr-10" to="/">Home</Link>
@@ -18,7 +18,7 @@ const Navigations = ({title}) => {
 };
 
 Navigations.defaultProps = {
-    title: "ToDo App"
+    title: "Simple ToDo Application"
 }
 
 Navigations.propTypes = {
