@@ -20,14 +20,14 @@ const Card = ({columnId, id, label, desc, date}) => {
                 }
                 {columnId === 2 &&
                     <div className="card-actions flex justify-center">
-                        <button onClick={() => transferTask(1, 2, id)} className="btn btn-sm text-white btn-success">Done</button>
-                        <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm text-white btn-error"><MdDeleteOutline size={20}/></button>
+                        <button onClick={() => transferTask(1, 2, id)} className="btn btn-sm text-white w-2/4 btn-success">Done</button>
+                        <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm w-1/4 text-white btn-error"><MdDeleteOutline size={20}/></button>
                     </div>
                 }
                 {columnId === 3 &&
                     <div className="card-actions flex justify-center">
-                        <button onClick={() => transferTask(2, 1, id)} className="btn btn-sm text-white btn-warning">Pending</button>
-                        <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm text-white btn-error"><MdDeleteOutline size={20}/></button>
+                        <button onClick={() => transferTask(2, 1, id)} className="btn btn-sm text-white w-2/4 btn-warning">Pending</button>
+                        <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm w-1/4 text-white btn-error"><MdDeleteOutline size={20}/></button>
                     </div>
                 }
                 <div className="card-body font-light text-sm text-center p-0">
