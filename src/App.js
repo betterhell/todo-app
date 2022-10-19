@@ -11,18 +11,16 @@ function App() {
   return (
       <TodoProvider>
           <BrowserRouter>
-              <div className="flex flex-col h-full">
-                 <Navigations />
-                 <main>
-                     <Routes>
-                         <Route path="/about" element={<About />} />
-                         <Route path="/" element={<MainPage />} />
-                     </Routes>
-                 </main>
-              </div>
+              <Navigations />
+              <main>
+                  <Routes>
+                      <Route path="/about" element={<About />} />
+                      <Route path="/" element={<MainPage />} />
+                  </Routes>
+              </main>
               <Footer />
           </BrowserRouter>
-          <ToastContainer position="top-right" autoClose={2000} />
+          <ToastContainer position="bottom-right" autoClose={2000} />
       </TodoProvider>
   );
 }
