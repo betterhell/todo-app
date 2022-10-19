@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {AiOutlinePlus} from "react-icons/ai";
 import {BsCheckLg} from "react-icons/bs"
-import todoAppContext from "../context/TodoAppContext";
+import todoAppContext from "../context/todoAppContext";
 import {toast} from "react-toastify";
 
 const TaskCard = ({columnId}) => {

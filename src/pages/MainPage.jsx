@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import Column from "../components/Column";
-import todoAppContext from "../context/TodoAppContext";
+import todoAppContext from "../context/todoAppContext";
 
 const MainPage = () => {
     const {columns} = useContext(todoAppContext)

@@ -3,7 +3,7 @@ import {initialColumns} from "../components/data/columnList";
 import {v4 as uuidv4} from 'uuid';
 import {toast} from "react-toastify";
 
-const TodoAppContext = createContext()
+const todoAppContext = createContext()
 
 export const TodoProvider = ({children}) => {
     const [columns, setColumns] = useState(initialColumns)
@@ -66,14 +66,14 @@ export const TodoProvider = ({children}) => {
     }
 
 
-    return <TodoAppContext.Provider value={{
+    return <todoAppContext.Provider value={{
         columns,
         handleAddTask,
         handleDeleteTask,
         transferTask,
     }}>
         {children}
-    </TodoAppContext.Provider>
+    </todoAppContext.Provider>
 }
 
-export default TodoAppContext
+export default todoAppContext

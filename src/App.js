@@ -3,7 +3,7 @@ import Navigations from "./components/Navigations";
 import Footer from "./components/Footer";
 import About from "./pages/About";
 import MainPage from "./pages/MainPage";
-import {TodoProvider} from "./context/TodoAppContext"
+import {TodoProvider} from "./context/todoAppContext"
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 

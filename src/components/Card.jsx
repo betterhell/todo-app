@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import todoAppContext from "../context/TodoAppContext";
+import todoAppContext from "../context/todoAppContext";
 import {MdDeleteOutline} from "react-icons/md"
 
 const Card = ({columnId, id, label, desc, date}) => {
