@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaTwitch, FaTelegramPlane, FaGithub} from "react-icons/fa"
+import {socialList} from "./data/socialList";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear()
@@ -11,9 +11,16 @@ const Footer = () => {
             <p>Copyright © {currentYear} - All right reserved</p>
         </div>
         <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-            <a className="hover:text-[#171515] hover:scale-110 transition-all" target="_blank" href="https://github.com/betterhell" rel="noreferrer"><FaGithub size={30} /></a>
-            <a className="hover:text-[#0088cc] hover:scale-110 transition-all" target="_blank" href="https://t.me/betterheal" rel="noreferrer"><FaTelegramPlane size={30} /></a>
-            <a className="hover:text-[#6441a5] hover:scale-110 transition-all" target="_blank" href="https://www.twitch.tv/betterhell" rel="noreferrer"><FaTwitch size={30} /></a>
+            {socialList.map((social) =>
+                <a key={social.id}
+                   target="_blank"
+                   className={`${social.color} hover:scale-110 transition-all"`}
+                   href={social.link}
+                   rel="noreferrer"
+                >
+                    {social.icon}
+                </a>
+            )}
         </div>
     </footer>
     );

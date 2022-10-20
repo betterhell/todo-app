@@ -3,7 +3,7 @@ import Column from "../components/Column";
 import todoAppContext from "../context/todoAppContext";
 import {BsFillArrowUpCircleFill} from "react-icons/bs"
 
-const MainPage = () => {
+const TodosPage = () => {
     const [showTopBtn, setShowTopBtn] = useState(false);
     const {columns} = useContext(todoAppContext)
 
@@ -41,4 +41,4 @@ const MainPage = () => {
 
 
 
-export default MainPage;
+export default TodosPage;
