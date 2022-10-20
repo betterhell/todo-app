@@ -5,7 +5,7 @@ import {BsInfoCircle} from "react-icons/bs"
 
 const Navigations = ({title}) => {
     return (
-        <nav className="navbar mb-[12px] justify-between shadow-lg bg-gray-700">
+        <nav className="navbar bg-neutral text-neutral-content mb-[12px] justify-between shadow-lg">
             <div className="container w-fit">
                 <Link className="p-2 text-lg font-bold align-middle text-white hover: " to="/">{title}</Link>
             </div>

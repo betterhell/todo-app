@@ -21,14 +21,14 @@ const Column = ({label, tasks, id}) => {
     }
 
     return (
-         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} relative p-5 rounded shadow-2xl w-1/2 lg:w-[300px] h-screen mx-5 my-5`}>
+         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} h-max relative p-5 rounded shadow-2xl w-1/2 lg:w-[300px] mx-5 my-5`}>
             <div className="card-title pb-2 justify-center">
                 <h3 className="font-mono">{label}</h3>
             </div>
 
              {tasks.length > 0 &&
                  <div className="flex absolute top-3 right-10">
-                    <span className="badge badge-lg badge-info text-white right-100 p-[7px]">{tasks.length}</span>
+                    <span className="badge border-gray-400 text-xs text-white right-100 p-[6px]">{tasks.length}</span>
                  </div>}
 
              <div className="divider">
