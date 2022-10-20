@@ -6,7 +6,7 @@ const MainPage = () => {
     const {columns} = useContext(todoAppContext)
 
     return (
-        <div className="flex justify-center xs:flex-col">
+        <div className="flex justify-center flex-col items-center lg:flex-row">
             {columns.map(column =>
                 <Column
                     id={column.id}

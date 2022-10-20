@@ -11,11 +11,9 @@ const TaskCard = ({columnId}) => {
     const [textLabel, setTextLabel] = useState("")
     const [textDesc, setTextDesc] = useState("")
 
-
     const changeLabel = (e) => {
         setTextLabel(e.target.value)
     }
-
 
     const changeDesc = (e) => {
         setTextDesc(e.target.value)
@@ -40,7 +38,7 @@ const TaskCard = ({columnId}) => {
     return (
         <>
             {isOpen &&
-                <div className="card card-bordered h-fit items-center p-3 m-5 shadow-2xl">
+                <div className={ `card card-bordered h-fit items-center p-3 m-5 shadow-2xl`}>
                     <div className="form-control">
                         <div className="card-title mb-5">
                             <input onChange={changeLabel} value={textLabel} type="text" placeholder="Task Label" className="input input-bordered input-accent w-full max-w-xs" />
