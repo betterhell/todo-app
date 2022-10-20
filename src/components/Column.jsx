@@ -1,12 +1,27 @@
 import PropTypes from "prop-types";
 import TaskCard from "./TaskCard";
 import Card from "./Card";
+import {MdOutlineTaskAlt, MdOutlinePending} from "react-icons/md"
+import {BsListTask} from "react-icons/bs"
 
 const Column = ({label, tasks, id}) => {
     const userScreenHeight = window.innerHeight
 
+    const IconSwitcher = (label) => {
+        switch (label) {
+            case "Initial Tasks":
+                return <BsListTask size={60} />
+            case "Pending Tasks":
+                return <MdOutlinePending size={60} />
+            case "Done Tasks":
+                return <MdOutlineTaskAlt size={60} />
+            default:
+                return <BsListTask size={60} />
+        }
+    }
+
     return (
-         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} relative p-5 rounded shadow-2xl w-1/2 lg:w-[300px]  h-screen mx-5 my-5`}>
+         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} relative p-5 rounded shadow-2xl w-1/2 lg:w-[300px] h-screen mx-5 my-5`}>
             <div className="card-title pb-2 justify-center">
                 <h3 className="font-mono">{label}</h3>
             </div>
@@ -15,9 +30,15 @@ const Column = ({label, tasks, id}) => {
                  <div className="flex absolute top-3 right-10">
                     <span className="badge badge-lg badge-info text-white right-100 p-[7px]">{tasks.length}</span>
                  </div>}
-             <div className="divider"></div>
 
-            {(!tasks || tasks.length === 0) && (<p className="flex justify-center font-light m-5">No tasks yet...</p>)}
+             <div className="divider">
+                 {IconSwitcher(label)}
+             </div>
+
+            {(!tasks || tasks.length === 0) && (
+                <p className="flex justify-center font-light m-5">No tasks yet...</p>)
+            }
+
             <div className="container">
                 {tasks.map(task =>
                     <Card
