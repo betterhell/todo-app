@@ -6,7 +6,6 @@ import TodosPage from "./pages/TodosPage";
 import {TodoProvider} from "./context/todoAppContext"
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import StartingPage from "./pages/StartingPage";
 
 function App() {
   return (
@@ -15,9 +14,8 @@ function App() {
                 <Navigations />
                 <main>
                     <Routes>
-                        <Route path="/" element={<StartingPage />} />
                         <Route path="/about" element={<About />} />
-                        <Route path="/todos" element={<TodosPage />} />
+                        <Route path="/" element={<TodosPage />} />
                     </Routes>
                 </main>
               <Footer />

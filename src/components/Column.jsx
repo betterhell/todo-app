@@ -7,7 +7,7 @@ import {BsListTask} from "react-icons/bs"
 const Column = ({label, tasks, id}) => {
     const userScreenHeight = window.innerHeight
 
-    const IconSwitcher = (label) => {
+    const iconSwitcher = (label) => {
         switch (label) {
             case "Initial Tasks":
                 return <BsListTask size={60} />
@@ -32,7 +32,7 @@ const Column = ({label, tasks, id}) => {
                  </div>}
 
              <div className="divider">
-                 {IconSwitcher(label)}
+                 {iconSwitcher(label)}
              </div>
 
             {(!tasks || tasks.length === 0) && (
@@ -48,6 +48,7 @@ const Column = ({label, tasks, id}) => {
                         label={task.label}
                         desc={task.description}
                         date={task.createDate}
+                        endDate={task.endDate}
                     />
                     )}
             </div>

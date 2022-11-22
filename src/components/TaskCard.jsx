@@ -10,6 +10,7 @@ const TaskCard = ({columnId}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [textLabel, setTextLabel] = useState("")
     const [textDesc, setTextDesc] = useState("")
+    const [endDate, setEndDate] = useState("")
 
     const changeLabel = (e) => {
         setTextLabel(e.target.value)
@@ -19,10 +20,15 @@ const TaskCard = ({columnId}) => {
         setTextDesc(e.target.value)
     }
 
+    const changeEndDate = (e) => {
+        setEndDate(e.target.value)
+    }
+
     const createTask = () => {
-        handleAddTask(columnId, textLabel, textDesc)
+        handleAddTask(columnId, textLabel, textDesc, endDate)
         setTextLabel("")
         setTextDesc("")
+        setEndDate("")
         setIsOpen(false)
         toast.success("Task added!")
     }
@@ -38,14 +44,19 @@ const TaskCard = ({columnId}) => {
     return (
         <>
             {isOpen &&
-                <div className={ `card card-bordered h-fit items-center p-3 m-5 shadow-2xl`}>
+                <div className={`card card-bordered h-fit items-center p-3 m-3 shadow-2xl`}>
                     <div className="form-control">
                         <div className="card-title mb-5">
                             <input onChange={changeLabel} value={textLabel} type="text" placeholder="Task Label" className="input input-bordered input-accent w-full max-w-xs" />
                         </div>
 
-                        <div className="card-body p-0 w-full relative">
+                        <div className="card-body p-0 mb-5 w-full relative">
                             <textarea onChange={changeDesc} value={textDesc} className="resize-none textarea textarea-error" placeholder="Task Desc..."></textarea>
+                        </div>
+
+                        <div className="card-body p-0 w-full relative">
+                            <label className="m-0 font-light" htmlFor="expirationDate">Expiration date</label>
+                            <input name="expirationDate" onChange={changeEndDate} value={endDate} placeholder="End date" type="datetime-local" className="input input-bordered input-accent w-full max-w-xs" />
                         </div>
                     </div>
                     <div className="card-actions justify-center m-3">
