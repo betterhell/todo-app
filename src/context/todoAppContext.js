@@ -2,25 +2,30 @@ import {createContext, useState, useEffect} from "react";
 import {initialColumns} from "../components/data/columnList";
 import {v4 as uuidv4} from 'uuid';
 import {toast} from "react-toastify";
+import dayjs from "dayjs";
 
 const todoAppContext = createContext()
 
 export const TodoProvider = ({children}) => {
     const [columns, setColumns] = useState(initialColumns)
 
-    const handleAddTask = (columnId,label, description) => {
-        const currentDate = new Date().toLocaleString()
+    const [isEdit, setIsEdit] = useState(false)
 
+    const toggleEditTask = () => {
+        !isEdit ? setIsEdit(true) : setIsEdit(false)
+    }
+
+    const handleAddTask = (columnId, label, description, endDate) => {
         const task = {
             id: uuidv4(),
             label,
             description,
-            createDate: currentDate
+            createDate: dayjs(),
+            endDate: dayjs(endDate),
         }
         addTask(columnId, task)
     }
 
-    // Save items in LS
     useEffect(() => {
         const todos = JSON.parse(localStorage.getItem('columns'));
 
@@ -52,9 +57,18 @@ export const TodoProvider = ({children}) => {
     const deleteTask = (columnId, taskId) => {
         setColumns((prev) => {
             const columnIndex = prev.findIndex(item => item.id === columnId)
+            console.log(columnIndex)
             const newColumns = [...prev]
             newColumns[columnIndex].items = newColumns[columnIndex].items.filter((task) => taskId !== task.id)
             return newColumns
+        })
+    }
+
+    const editTask = (columnId, taskId) => {
+        setColumns((prev) => {
+            const columnIndex = prev.findIndex(item => item.id === columnId)
+            const newColumns = [...prev]
+            console.log(columnIndex)
         })
     }
 
@@ -71,6 +85,9 @@ export const TodoProvider = ({children}) => {
         handleAddTask,
         handleDeleteTask,
         transferTask,
+        isEdit,
+        editTask,
+        toggleEditTask,
     }}>
         {children}
     </todoAppContext.Provider>

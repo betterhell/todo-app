@@ -55,6 +55,13 @@ const TaskCard = ({columnId}) => {
                         </div>
 
                         <div className="card-body p-0 w-full relative">
+                            <label className="block">
+                                <span className="sr-only"></span>
+                                <input type="file" className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"/>
+                            </label>
+                        </div>
+
+                        <div className="card-body p-0 w-full relative">
                             <label className="m-0 font-light" htmlFor="expirationDate">Expiration date</label>
                             <input name="expirationDate" onChange={changeEndDate} value={endDate} placeholder="End date" type="datetime-local" className="input input-bordered input-accent w-full max-w-xs" />
                         </div>
