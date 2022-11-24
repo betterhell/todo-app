@@ -10,12 +10,12 @@ export const TodoProvider = ({children}) => {
     const [columns, setColumns] = useState(initialColumns)
 
     // Edit Task
-    const toggleEditTask = (isEdit, setIsEdit, columnId, textLabel, textDesc, endDate, task) => {
+    const toggleEditTask = (isEdit, setIsEdit, columnId, textLabel, textDesc, endDate, task, files) => {
         if (!isEdit) {
             setIsEdit(true)
         } else {
             deleteTask(columnId, task)
-            handleAddTask(columnId, textLabel, textDesc, endDate)
+            handleAddTask(columnId, textLabel, textDesc, files, endDate)
             setIsEdit(false)
         }
     }
@@ -37,8 +37,8 @@ export const TodoProvider = ({children}) => {
     }
 
     // Create new Task
-    const createTask = (columnId, setLabel, setDesc, setEndDate, setIsOpen, textLabel, textDesc, endDate) => {
-        handleAddTask(columnId, textLabel, textDesc, endDate)
+    const createTask = (columnId, setLabel, setDesc, setEndDate, setIsOpen, textLabel, textDesc, endDate, files) => {
+        handleAddTask(columnId, textLabel, textDesc, files, endDate)
         setLabel("")
         setDesc("")
         setEndDate("")
@@ -47,12 +47,12 @@ export const TodoProvider = ({children}) => {
     }
 
     // new Task
-    const handleAddTask = (columnId, label, description, endDate) => {
+    const handleAddTask = (columnId, label, description, files, endDate) => {
         const task = {
             id: uuidv4(),
             label,
             description,
-            files: [],
+            files,
             createDate: dayjs(),
             endDate: dayjs(endDate),
         }

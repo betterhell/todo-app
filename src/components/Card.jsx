@@ -3,8 +3,9 @@ import todoAppContext from "../context/todoAppContext";
 import {MdDeleteOutline} from "react-icons/md"
 import dayjs from "dayjs";
 import {BiEdit, BiLike} from "react-icons/bi"
+import InputFile from "./InputFile";
 
-const Card = ({columnId, id, label, desc, date, endDate}) => {
+const Card = ({columnId, id, label, desc, date, endDate, files}) => {
 const {handleDeleteTask, transferTask, toggleEditTask, editTaskOnChange} = useContext(todoAppContext)
 
 const [isEdit, setIsEdit] = useState(false)
@@ -12,7 +13,7 @@ const [isEdit, setIsEdit] = useState(false)
 const [isEditForm, setIsEditForm] = useState({
     newLabel: label,
     newDesc: desc,
-    newFile: [],
+    newFile: files,
     newEndDate: endDate,
 })
 
@@ -26,13 +27,11 @@ return (
             {isEdit ? <input onChange={(e) => editTaskOnChange(e, setIsEditForm)} value={isEditForm.newDesc} className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="text" name="descEdit" id="newDesc"/> : <p className="px-3">{desc}</p>}
             <hr />
             {isEdit &&
-                <div className="card-body p-0 w-full relative">
-                    <label className="block">
-                        <span className="sr-only"></span>
-                        <input type="file" className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"/>
-                    </label>
-                </div>
+               <InputFile files={isEditForm.newFile} setFiles={(file) => setIsEditForm((prev) => ({...prev, newFile: file}))} />
             }
+
+            {!isEdit && <div>{isEditForm.newFile.map((file, id) => <p className="font-extralight" key={id}>{file.name}</p>)}</div>}
+
             {isEdit &&
                 <div className="card-body p-0 w-full relative">
                     <label className="m-0 font-light" htmlFor="expirationDate">Ending Date</label>
@@ -40,13 +39,12 @@ return (
                 </div>
             }
 
-
             {columnId === 1 &&
                 <div className="card-actions btn-block flex justify-center">
                     <button onClick={() => transferTask(0, 1, id)} className="btn btn-sm text-white btn-warning">Pending</button>
                     <button onClick={() => transferTask(0, 2, id)} className="btn btn-sm text-white btn-success">Done</button>
                     <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm text-white btn-error"><MdDeleteOutline size={20}/></button>
-                    <button onClick={() => toggleEditTask(isEdit, setIsEdit, columnId, isEditForm.newLabel, isEditForm.newDesc, isEditForm.newEndDate, id)} className="btn btn-sm text-white btn-circle btn-info">{!isEdit ? <BiEdit size={17} /> : <BiLike size={17} />}</button>
+                    <button onClick={() => toggleEditTask(isEdit, setIsEdit, columnId, isEditForm.newLabel, isEditForm.newDesc, isEditForm.newEndDate, id, isEditForm.newFile)} className="btn btn-sm text-white btn-circle btn-info">{!isEdit ? <BiEdit size={17} /> : <BiLike size={17} />}</button>
                 </div>
             }
 
@@ -54,7 +52,7 @@ return (
                 <div className="card-actions flex justify-center">
                     <button onClick={() => transferTask(1, 2, id)} className="btn btn-sm text-white w-2/4 btn-success">Done</button>
                     <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm w-1/4 text-white btn-error"><MdDeleteOutline size={20}/></button>
-                    <button onClick={() => toggleEditTask(isEdit, setIsEdit, columnId, isEditForm.newLabel, isEditForm.newDesc, isEditForm.newEndDate, id)} className="btn btn-sm text-white btn-circle btn-info">{!isEdit ? <BiEdit size={17} /> : <BiLike size={17} />}</button>
+                    <button onClick={() => toggleEditTask(isEdit, setIsEdit, columnId, isEditForm.newLabel, isEditForm.newDesc, isEditForm.newEndDate, id, isEditForm.newFile)} className="btn btn-sm text-white btn-circle btn-info">{!isEdit ? <BiEdit size={17} /> : <BiLike size={17} />}</button>
                 </div>
             }
 
@@ -62,7 +60,7 @@ return (
                 <div className="card-actions flex justify-center">
                     <button onClick={() => transferTask(2, 1, id)} className="btn btn-sm text-white w-2/4 btn-warning">Pending</button>
                     <button onClick={() => handleDeleteTask(columnId, id)} className="btn btn-sm w-1/4 text-white btn-error"><MdDeleteOutline size={20}/></button>
-                    <button onClick={() => toggleEditTask(isEdit, setIsEdit, columnId, isEditForm.newLabel, isEditForm.newDesc, isEditForm.newEndDate, id)} className="btn btn-sm text-white btn-circle btn-info">{!isEdit ? <BiEdit size={17} /> : <BiLike size={17} />}</button>
+                    <button onClick={() => toggleEditTask(isEdit, setIsEdit, columnId, isEditForm.newLabel, isEditForm.newDesc, isEditForm.newEndDate, id, isEditForm.newFile)} className="btn btn-sm text-white btn-circle btn-info">{!isEdit ? <BiEdit size={17} /> : <BiLike size={17} />}</button>
                 </div>
             }
 

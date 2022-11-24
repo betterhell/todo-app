@@ -49,6 +49,7 @@ const Column = ({label, tasks, id}) => {
                         desc={task.description}
                         date={task.createDate}
                         endDate={task.endDate}
+                        files={task.files}
                     />
                     )}
             </div>

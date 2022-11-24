@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import {AiOutlinePlus} from "react-icons/ai";
 import {BsCheckLg} from "react-icons/bs"
 import todoAppContext from "../context/todoAppContext";
+import InputFile from "./InputFile";
 
 const TaskCard = ({columnId}) => {
     const {createTask, toggleTaskCard} = useContext(todoAppContext)
@@ -10,6 +11,8 @@ const TaskCard = ({columnId}) => {
     const [textLabel, setTextLabel] = useState("")
     const [textDesc, setTextDesc] = useState("")
     const [endDate, setEndDate] = useState("")
+    const [files, setFiles] = useState([])
+
 
     const changeLabel = (e) => {
         setTextLabel(e.target.value)
@@ -38,12 +41,7 @@ const TaskCard = ({columnId}) => {
                             <textarea id="desc" onChange={changeDesc} value={textDesc} className="resize-none textarea textarea-error" placeholder="Task Desc..."></textarea>
                         </div>
 
-                        <div className="card-body p-0 w-full relative">
-                            <label className="block">
-                                <span className="sr-only"></span>
-                                <input id="file" type="file" className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"/>
-                            </label>
-                        </div>
+                        <InputFile files={files} setFiles={setFiles} isOpen={isOpen} />
 
                         <div className="card-body p-0 w-full relative">
                             <label className="m-0 font-light" htmlFor="expirationDate">Ending Date</label>
@@ -54,7 +52,7 @@ const TaskCard = ({columnId}) => {
                     <div className="card-actions justify-center m-3">
                         <button
                             disabled={isDisabled}
-                            onClick={() => createTask(columnId, setTextLabel, setTextDesc, setEndDate, setIsOpen, textLabel, textDesc, endDate)}
+                            onClick={() => createTask(columnId, setTextLabel, setTextDesc, setEndDate, setIsOpen, textLabel, textDesc, endDate, files)}
                             className={`btn ${isDisabled && "btn-disabled"} btn-accent text-white gap-2 hover:btn-success  hover:text-white`}>Confirm Task<BsCheckLg size="15" />
                         </button>
                     </div>
