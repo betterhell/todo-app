@@ -14,16 +14,14 @@ function App() {
   return (
       <TodoProvider>
           <BrowserRouter>
-                <Navigations />
-                <main>
-                    <Routes>
-                        <Route path="/sign-up" element={<SignUp />} />
-                        <Route path="/sign-in" element={<SignIn />} />
-                        <Route path="/forgot-password" element={<ForgotPassword />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/" element={<TodosPage />} />
-                    </Routes>
-                </main>
+              <Navigations />
+                  <Routes>
+                      <Route path="/sign-up" element={<SignUp />} />
+                      <Route path="/sign-in" element={<SignIn />} />
+                      <Route path="/forgot-password" element={<ForgotPassword />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/" element={<TodosPage />} />
+                  </Routes>
               <Footer />
           </BrowserRouter>
           <ToastContainer position="top-right" autoClose={2000} />

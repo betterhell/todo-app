@@ -24,7 +24,7 @@ const InputFile = ({files, setFiles, isOpen}) => {
             onDragStart={dragStartHandler}
             onDragLeave={dragLeaveHandler}
             onDragOver={dragStartHandler}
-            className="mb-5 flex justify-center cursor-pointer w-[200px] p-3 border-2 border-dashed">
+            className="mb-5 flex justify-center cursor-pointer w-full p-3 border-2 border-dashed">
             <label
                 className="cursor-pointer"
                 htmlFor="file-loader-button">
