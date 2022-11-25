@@ -9,7 +9,17 @@ const todoAppContext = createContext()
 export const TodoProvider = ({children}) => {
     const [columns, setColumns] = useState(initialColumns)
 
-    // Edit Task
+    /**
+     * Edit task.
+     * @param {boolean} isEdit  - Common state of edit
+     * @param {boolean} setIsEdit - New state of edit
+     * @param {number} columnId - ID column
+     * @param {string} textLabel - Label for task
+     * @param {string} textDesc - Description for task
+     * @param {string} endDate - Finish date for task
+     * @param {number} task - ID task
+     * @param {array} files - Attached files for task
+     */
     const toggleEditTask = (isEdit, setIsEdit, columnId, textLabel, textDesc, endDate, task, files) => {
         if (!isEdit) {
             setIsEdit(true)
@@ -20,7 +30,11 @@ export const TodoProvider = ({children}) => {
         }
     }
 
-    // Change inputs
+    /**
+     * Change inputs toggle.
+     * @param {event} e  - Common state of edit
+     * @param {boolean} setIsEdit - New state of edit
+     */
     const editTaskOnChange = (e, setIsEdit) => {
         setIsEdit((prevState) => ({
                 ...prevState,
@@ -29,14 +43,29 @@ export const TodoProvider = ({children}) => {
         )
     }
 
-    // Open/Close task card
+    /**
+     * Task card toggle.
+     * @param {boolean} isOpen  - Common state of open card
+     * @param {boolean} setIsOpen - New state of open card
+     */
     const toggleTaskCard = (isOpen, setIsOpen) => {
         if (!isOpen) {
             setIsOpen(true)
         }
     }
 
-    // Create new Task
+    /**
+     * Create a new task.
+     * @param {number} columnId - ID column
+     * @param {string} setLabel - New state for label
+     * @param {string} setDesc - New state for description
+     * @param {string} setEndDate - New state for finish date
+     * @param {boolean} setIsOpen - New state open/close task
+     * @param {string} textLabel - New label for task
+     * @param {string} textDesc - New description for task
+     * @param {string} endDate - Finish date for task
+     * @param {array} files - Attached files for task
+     */
     const createTask = (columnId, setLabel, setDesc, setEndDate, setIsOpen, textLabel, textDesc, endDate, files) => {
         handleAddTask(columnId, textLabel, textDesc, files, endDate)
         setLabel("")
@@ -46,7 +75,14 @@ export const TodoProvider = ({children}) => {
         toast.success("Task added!")
     }
 
-    // new Task
+    /**
+     * Form for new Task.
+     * @param {number} columnId - ID column
+     * @param {string} label - Label for task
+     * @param {string} description - Description for task
+     * @param {array} files - Attached files for task
+     * @param {string} endDate - Finish date for task
+     */
     const handleAddTask = (columnId, label, description, files, endDate) => {
         const task = {
             id: uuidv4(),
@@ -72,17 +108,25 @@ export const TodoProvider = ({children}) => {
         localStorage.setItem('columns', JSON.stringify(columns));
     }, [columns]);
 
-    // Add new Task in choose column
-    const addTask = (columnId, task) => {
+    /**
+     * Add new Task in choose column.
+     * @param {number} columnId - ID column
+     * @param {number} taskId - ID task
+     */
+    const addTask = (columnId, taskId) => {
         setColumns((prev) => {
             const columnIndex = prev.findIndex(item => item.id === columnId)
             const newColumns = [...prev]
-            newColumns[columnIndex].items = [...newColumns[columnIndex].items, task]
+            newColumns[columnIndex].items = [...newColumns[columnIndex].items, taskId]
             return newColumns
         })
     }
 
-    // Warning before delete Task
+    /**
+     * Warn before delete task.
+     * @param {number} columnId - ID column
+     * @param {number} taskId - ID task
+     */
     const handleDeleteTask = (columnId, taskId) => {
         if (window.confirm('Are you sure you want to delete?')) {
             deleteTask(columnId, taskId)
@@ -90,7 +134,11 @@ export const TodoProvider = ({children}) => {
         }
     }
 
-    // Delete Task in choose column
+    /**
+     * Delete task from column.
+     * @param {number} columnId - ID column
+     * @param {number} taskId - ID task
+     */
     const deleteTask = (columnId, taskId) => {
         setColumns((prev) => {
             const columnIndex = prev.findIndex(item => item.id === columnId)
@@ -100,7 +148,12 @@ export const TodoProvider = ({children}) => {
         })
     }
 
-    // Transferring Task in choose column
+    /**
+     * Transferred task in a choose column.
+     * @param {number} columnIndexFrom - ID column from task
+     * @param {number} columnIndexTo - ID column for task
+     * @param {number} taskId - ID task
+     */
     const transferTask = (columnIndexFrom, columnIndexTo, taskId) => {
         const task = {...columns[columnIndexFrom].items.find(task => taskId === task.id)}
         addTask(columns[columnIndexTo].id, task)

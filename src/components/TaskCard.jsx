@@ -13,7 +13,6 @@ const TaskCard = ({columnId}) => {
     const [endDate, setEndDate] = useState("")
     const [files, setFiles] = useState([])
 
-
     const changeLabel = (e) => {
         setTextLabel(e.target.value)
     }

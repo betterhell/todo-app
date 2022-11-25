@@ -6,6 +6,9 @@ import TodosPage from "./pages/TodosPage";
 import {TodoProvider} from "./context/todoAppContext"
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import ForgotPassword from "./components/ForgotPassword";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
                 <Navigations />
                 <main>
                     <Routes>
+                        <Route path="/sign-up" element={<SignUp />} />
+                        <Route path="/sign-in" element={<SignIn />} />
+                        <Route path="/forgot-password" element={<ForgotPassword />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/" element={<TodosPage />} />
                     </Routes>
