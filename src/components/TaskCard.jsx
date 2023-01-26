@@ -30,7 +30,7 @@ const TaskCard = ({columnId}) => {
     return (
         <>
             {isOpen &&
-                <div className={`card card-bordered h-fit items-center p-3 m-3 shadow-2xl`}>
+                <div className={`card card-bordered h-fit items-center p-2 shadow-md`}>
                     <div className="form-control">
                         <div className="card-title mb-5">
                             <input id="label" onChange={changeLabel} value={textLabel} type="text" placeholder="Task Label" className="input input-bordered input-accent w-full max-w-xs" />
@@ -39,8 +39,6 @@ const TaskCard = ({columnId}) => {
                         <div className="card-body p-0 mb-5 w-full relative">
                             <textarea id="desc" onChange={changeDesc} value={textDesc} className="resize-none textarea textarea-error" placeholder="Task Desc..."></textarea>
                         </div>
-
-                        <InputFile files={files} setFiles={setFiles} isOpen={isOpen} />
 
                         <div className="card-body p-0 w-full relative">
                             <label className="m-0 font-light" htmlFor="expirationDate">Ending Date</label>

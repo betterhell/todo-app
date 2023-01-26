@@ -21,7 +21,7 @@ const Column = ({label, tasks, id}) => {
     }
 
     return (
-         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} h-max relative p-5 rounded shadow-2xl w-1/2 lg:w-[300px] mx-5 my-5`}>
+         <div className={`container ${userScreenHeight >= tasks.length ? `overflow-y-scroll` : `overflow-y-hidden`} px-2 py-5 h-max relative rounded shadow-xl w-1/2 lg:w-[300px] m-5`}>
             <div className="card-title pb-2 justify-center">
                 <h3 className="font-mono">{label}</h3>
             </div>

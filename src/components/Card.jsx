@@ -21,14 +21,11 @@ const currentDate = dayjs()
 const isTaskComplete = dayjs(endDate).isBefore(currentDate)
 
 return (
-    <div className={`card mb-5 w-full bg-base-100 shadow-xl ${isTaskComplete && "border-2 border-red-500"}`}>
+    <div className={`card mb-5 w-full bg-base-100 ${isTaskComplete && "border-2 border-red-500"}`}>
         <div className="card-body break-all p-3 max-h-fit">
             {isEdit ? <input onChange={(e) => editTaskOnChange(e, setIsEditForm)} value={isEditForm.newLabel} className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="text" name="labelEdit" id="newLabel"/> : <h2 className="card-title px-3">{label}</h2>}
             {isEdit ? <input onChange={(e) => editTaskOnChange(e, setIsEditForm)} value={isEditForm.newDesc} className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="text" name="descEdit" id="newDesc"/> : <p className="px-3">{desc}</p>}
             <hr />
-            {isEdit &&
-               <InputFile files={isEditForm.newFile} setFiles={(file) => setIsEditForm((prev) => ({...prev, newFile: file}))} />
-            }
 
             {!isEdit && <div>{isEditForm.newFile.map((file, id) => <p className="font-extralight" key={id}>{file.name}</p>)}</div>}
 
