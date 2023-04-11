@@ -10,7 +10,6 @@ Powered by:
 <li>React.js</li>
 <li>JavaScript</li>
 <li>toastify</li>
-<li>SCSS</li>
 <li>TailwindCSS</li>
 <li>DaisyUI</li>
 </ul>
